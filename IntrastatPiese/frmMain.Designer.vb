@@ -55,7 +55,6 @@ Partial Class frmMain
         Me.Label2 = New System.Windows.Forms.Label()
         Me.txtPathExp = New System.Windows.Forms.TextBox()
         Me.btnBrowseExp = New System.Windows.Forms.Button()
-        Me.bsErr = New System.Windows.Forms.BindingSource(Me.components)
         Me.btnSelect = New System.Windows.Forms.Button()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.dgvErr = New System.Windows.Forms.DataGridView()
@@ -80,11 +79,12 @@ Partial Class frmMain
         Me.dgvExport = New System.Windows.Forms.DataGridView()
         Me.hpIntrastat = New System.Windows.Forms.HelpProvider()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.bsErr = New System.Windows.Forms.BindingSource(Me.components)
         Me.ssIntrastat.SuspendLayout()
         Me.tsMain.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
-        CType(Me.bsErr, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
         Me.SplitContainer1.SuspendLayout()
@@ -97,6 +97,7 @@ Partial Class frmMain
         Me.TabPage2.SuspendLayout()
         Me.TabPage3.SuspendLayout()
         CType(Me.dgvExport, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.bsErr, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'dlgImport
@@ -487,7 +488,7 @@ Partial Class frmMain
         Me.Label5.AutoSize = True
         Me.Label5.Location = New System.Drawing.Point(13, 77)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(50, 13)
+        Me.Label5.Size = New System.Drawing.Size(51, 13)
         Me.Label5.TabIndex = 30
         Me.Label5.Text = "Valoare"
         '
@@ -613,11 +614,21 @@ Partial Class frmMain
         '
         Me.hpIntrastat.HelpNamespace = "D:\intrastat\readme\Intrastat Piese.chm"
         '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(309, 100)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.TabIndex = 26
+        Me.Button1.Text = "Button1"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(806, 721)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.TabControl1)
         Me.Controls.Add(Me.tsMain)
         Me.Controls.Add(Me.ssIntrastat)
@@ -638,7 +649,6 @@ Partial Class frmMain
         Me.GroupBox1.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
-        CType(Me.bsErr, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer1.Panel1.ResumeLayout(False)
         Me.SplitContainer1.Panel2.ResumeLayout(False)
         Me.SplitContainer1.ResumeLayout(False)
@@ -652,6 +662,7 @@ Partial Class frmMain
         Me.TabPage2.ResumeLayout(False)
         Me.TabPage3.ResumeLayout(False)
         CType(Me.dgvExport, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.bsErr, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -712,5 +723,5 @@ Partial Class frmMain
     Friend WithEvents ts_btnHelp As System.Windows.Forms.ToolStripButton
     Friend WithEvents hpIntrastat As System.Windows.Forms.HelpProvider
     Friend WithEvents ToolTip1 As System.Windows.Forms.ToolTip
-
+    Friend WithEvents Button1 As Button
 End Class

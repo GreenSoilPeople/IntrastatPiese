@@ -333,12 +333,7 @@ Public Class frmMain
 
             Select Case ds_errcn8.Tables(0).Columns.Item(cmbFields.Text).DataType.Name
                 Case "String", "DateTime"
-                    If cmbOp.Text = "like" Then
-                        flt += "'%" & txtVal.Text & "%'"
-                    Else
-                        flt += "'" & txtVal.Text & "'"
-                    End If
-
+                    flt += "'" & txtVal.Text & "'"
                 Case Else
                     flt += txtVal.Text
             End Select
@@ -412,5 +407,9 @@ Public Class frmMain
 
     Private Sub ts_btnHelp_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ts_btnHelp.Click
         Help.ShowHelp(Me, hpIntrastat.HelpNamespace)
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Form1.Show()
     End Sub
 End Class
