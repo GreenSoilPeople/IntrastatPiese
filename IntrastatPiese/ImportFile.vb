@@ -5,22 +5,31 @@ Public Class ImportFile
     Public Supplier As Integer
 
     '<FieldConverter(ConverterKind.Date, "DD.MM.YYYY")>
-    Public DateIn As DateTime
+    <FieldQuoted>
+    Public DateIn As String
 
+    <FieldQuoted>
     Public Invoice As String
 
+    <FieldQuoted>
     Public System As String
 
+    <FieldQuoted>
     Public PartNumber As String
 
+    <FieldQuoted>
     Public CN8 As String
 
+    <FieldQuoted>
     Public OrgCountry As String
 
+    <FieldQuoted>
     Public ExpCountry As String
 
+    <FieldQuoted>
     Public DestCountry As String
 
+    <FieldQuoted>
     Public InvoiceType As String
 
     <FieldConverter(ConverterKind.Double, ",")>
