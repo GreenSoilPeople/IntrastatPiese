@@ -1,0 +1,57 @@
+SELECT	429 AS supplier_id,
+		" & IIf(Now.Month = 1, Now.Year - 1 & "12", Now.Year & IIf(Now.Month < 10, "0" & Now.Month - 1, Now.Month - 1)) & "01 as [data intrare],
+		system AS application_of_origin,
+		'' AS product_description,
+		cn8,
+		[tara sursa],
+		[tara exp],
+		[tara dest],
+		sum( [total valoare]),
+		sum( [total statistic]),
+		sum( greut),
+		unitgroup_code,
+		sum(cant),
+		delivery_type,
+		transport_type,
+		transaction_type
+
+FROM Ro_intrastat_2006_02
+
+where	delivery_type is not null
+		and transport_type is not null
+		and transaction_type is not null
+		and cn8 is not null
+
+group by	system,
+			cn8,
+			unitgroup_code,
+			delivery_type,
+			transport_type,
+			transaction_type,
+			[tara sursa],
+			[tara exp],
+			[tara dest]
+
+UNION SELECT 429 AS supplier_id,
+			 format([data intr], 'yyyyMMdd') AS invoice_date,
+			 system AS application_of_origin,
+			 'FF ' + [factura]  AS product_description,
+			 cn8,
+			 [tara sursa],
+			 [tara exp],
+			 [tara dest],
+			 [total valoare],
+			 [total statistic],
+			 greut,
+			 unitgroup_code,
+			 cant,
+			 delivery_type,
+			 transport_type,
+			 transaction_type
+
+FROM Ro_intrastat_2006_02
+
+where	delivery_type is null
+		or transport_type is null
+		or transaction_type is null
+		or cn8 is null
