@@ -1,13 +1,15 @@
 ﻿Imports FileHelpers
 
 <DelimitedRecord(";")>
-Public Class ImportFile
+Public Class ExportFile
+
+    Public ID As Integer
+
     Public Supplier As Integer
 
     '<FieldConverter(ConverterKind.Date, "DD.MM.YYYY")>
-    <FieldConverter(GetType(StringToDateConverter))>
     <FieldQuoted>
-    Public DateIn As Date
+    Public DateIn As String
 
     <FieldQuoted>
     Public Invoice As String
@@ -40,9 +42,16 @@ Public Class ImportFile
     Public TotalStatisticalValue As Double
 
     <FieldConverter(ConverterKind.Double, ",")>
-    Public Weight As Double 'Integer
+    Public Weight As Double
 
     Public Quantity As Integer
 
+    Public UnitGroupCode As String
+
+    Public DeliveryType As String
+
+    Public TransportType As String
+
+    Public TransactionType As String
 
 End Class

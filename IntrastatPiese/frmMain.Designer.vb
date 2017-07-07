@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmMain
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class frmMain
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMain))
@@ -79,12 +79,12 @@ Partial Class frmMain
         Me.dgvExport = New System.Windows.Forms.DataGridView()
         Me.hpIntrastat = New System.Windows.Forms.HelpProvider()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.Button1 = New System.Windows.Forms.Button()
         Me.bsErr = New System.Windows.Forms.BindingSource(Me.components)
         Me.ssIntrastat.SuspendLayout()
         Me.tsMain.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
+        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
         Me.SplitContainer1.SuspendLayout()
@@ -414,6 +414,7 @@ Partial Class frmMain
         Me.dgvErr.Name = "dgvErr"
         Me.dgvErr.Size = New System.Drawing.Size(792, 403)
         Me.dgvErr.TabIndex = 2
+        Me.dgvErr.VirtualMode = True
         '
         'cmsDgv
         '
@@ -488,7 +489,7 @@ Partial Class frmMain
         Me.Label5.AutoSize = True
         Me.Label5.Location = New System.Drawing.Point(13, 77)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(51, 13)
+        Me.Label5.Size = New System.Drawing.Size(50, 13)
         Me.Label5.TabIndex = 30
         Me.Label5.Text = "Valoare"
         '
@@ -614,21 +615,11 @@ Partial Class frmMain
         '
         Me.hpIntrastat.HelpNamespace = "D:\intrastat\readme\Intrastat Piese.chm"
         '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(309, 100)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 26
-        Me.Button1.Text = "Button1"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(806, 721)
-        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.TabControl1)
         Me.Controls.Add(Me.tsMain)
         Me.Controls.Add(Me.ssIntrastat)
@@ -651,6 +642,7 @@ Partial Class frmMain
         Me.GroupBox2.PerformLayout()
         Me.SplitContainer1.Panel1.ResumeLayout(False)
         Me.SplitContainer1.Panel2.ResumeLayout(False)
+        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer1.ResumeLayout(False)
         CType(Me.dgvErr, System.ComponentModel.ISupportInitialize).EndInit()
         Me.cmsDgv.ResumeLayout(False)
@@ -723,5 +715,4 @@ Partial Class frmMain
     Friend WithEvents ts_btnHelp As System.Windows.Forms.ToolStripButton
     Friend WithEvents hpIntrastat As System.Windows.Forms.HelpProvider
     Friend WithEvents ToolTip1 As System.Windows.Forms.ToolTip
-    Friend WithEvents Button1 As Button
 End Class
