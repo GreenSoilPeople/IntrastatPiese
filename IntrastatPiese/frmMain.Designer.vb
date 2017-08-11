@@ -40,21 +40,15 @@ Partial Class frmMain
         Me.LeftToolStripPanel = New System.Windows.Forms.ToolStripPanel()
         Me.ContentPanel = New System.Windows.Forms.ToolStripContentPanel()
         Me.tsMain = New System.Windows.Forms.ToolStrip()
-        Me.ts_btnConfig = New System.Windows.Forms.ToolStripButton()
+        Me.tsbtnImport = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.tsbtnErori = New System.Windows.Forms.ToolStripButton()
+        Me.tsbtnSave = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
+        Me.tsbtnGenExp = New System.Windows.Forms.ToolStripButton()
+        Me.tsbtnExport = New System.Windows.Forms.ToolStripButton()
         Me.ts_btnHelp = New System.Windows.Forms.ToolStripButton()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.btnImport = New System.Windows.Forms.Button()
-        Me.txtPathImp = New System.Windows.Forms.TextBox()
-        Me.btnBrowseImp = New System.Windows.Forms.Button()
-        Me.btnCorrect = New System.Windows.Forms.Button()
-        Me.btnGenExp = New System.Windows.Forms.Button()
-        Me.btnErrCN8 = New System.Windows.Forms.Button()
-        Me.btnExport = New System.Windows.Forms.Button()
-        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.txtPathExp = New System.Windows.Forms.TextBox()
-        Me.btnBrowseExp = New System.Windows.Forms.Button()
+        Me.tsbtnConfig = New System.Windows.Forms.ToolStripButton()
         Me.btnSelect = New System.Windows.Forms.Button()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.dgvErr = New System.Windows.Forms.DataGridView()
@@ -82,8 +76,6 @@ Partial Class frmMain
         Me.bsErr = New System.Windows.Forms.BindingSource(Me.components)
         Me.ssIntrastat.SuspendLayout()
         Me.tsMain.SuspendLayout()
-        Me.GroupBox1.SuspendLayout()
-        Me.GroupBox2.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
@@ -113,9 +105,9 @@ Partial Class frmMain
         'ssIntrastat
         '
         Me.ssIntrastat.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel1, Me.ss_lblImport, Me.pbImport})
-        Me.ssIntrastat.Location = New System.Drawing.Point(0, 699)
+        Me.ssIntrastat.Location = New System.Drawing.Point(0, 772)
         Me.ssIntrastat.Name = "ssIntrastat"
-        Me.ssIntrastat.Size = New System.Drawing.Size(806, 22)
+        Me.ssIntrastat.Size = New System.Drawing.Size(946, 22)
         Me.ssIntrastat.TabIndex = 7
         Me.ssIntrastat.Text = "StatusStrip1"
         '
@@ -153,6 +145,7 @@ Partial Class frmMain
         Me.il20.TransparentColor = System.Drawing.Color.Transparent
         Me.il20.Images.SetKeyName(0, "Browse 3.ico")
         Me.il20.Images.SetKeyName(1, "Table 1.ico")
+        Me.il20.Images.SetKeyName(2, "open-folder-outline.png")
         '
         'il32
         '
@@ -161,8 +154,9 @@ Partial Class frmMain
         Me.il32.Images.SetKeyName(0, "Table 1.ico")
         Me.il32.Images.SetKeyName(1, "Stop 2.ico")
         Me.il32.Images.SetKeyName(2, "General Options.ico")
-        Me.il32.Images.SetKeyName(3, "Advanced Options.ico")
-        Me.il32.Images.SetKeyName(4, "help.ico")
+        Me.il32.Images.SetKeyName(3, "help.ico")
+        Me.il32.Images.SetKeyName(4, "table-grid.png")
+        Me.il32.Images.SetKeyName(5, "bug.png")
         '
         'BottomToolStripPanel
         '
@@ -204,176 +198,104 @@ Partial Class frmMain
         '
         Me.tsMain.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.tsMain.ImageScalingSize = New System.Drawing.Size(36, 36)
-        Me.tsMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ts_btnConfig, Me.ts_btnHelp})
+        Me.tsMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsbtnImport, Me.ToolStripSeparator1, Me.tsbtnErori, Me.tsbtnSave, Me.ToolStripSeparator2, Me.tsbtnGenExp, Me.tsbtnExport, Me.ts_btnHelp, Me.tsbtnConfig})
         Me.tsMain.Location = New System.Drawing.Point(0, 0)
         Me.tsMain.Name = "tsMain"
-        Me.tsMain.Size = New System.Drawing.Size(806, 36)
+        Me.tsMain.Padding = New System.Windows.Forms.Padding(5, 5, 1, 0)
+        Me.tsMain.Size = New System.Drawing.Size(946, 63)
         Me.tsMain.TabIndex = 21
         '
-        'ts_btnConfig
+        'tsbtnImport
         '
-        Me.ts_btnConfig.AutoSize = False
-        Me.ts_btnConfig.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ts_btnConfig.Image = CType(resources.GetObject("ts_btnConfig.Image"), System.Drawing.Image)
-        Me.ts_btnConfig.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.ts_btnConfig.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ts_btnConfig.Margin = New System.Windows.Forms.Padding(0)
-        Me.ts_btnConfig.Name = "ts_btnConfig"
-        Me.ts_btnConfig.Size = New System.Drawing.Size(36, 36)
-        Me.ts_btnConfig.Text = "Options"
+        Me.tsbtnImport.Image = CType(resources.GetObject("tsbtnImport.Image"), System.Drawing.Image)
+        Me.tsbtnImport.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.tsbtnImport.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsbtnImport.Name = "tsbtnImport"
+        Me.tsbtnImport.Size = New System.Drawing.Size(47, 55)
+        Me.tsbtnImport.Text = "Import"
+        Me.tsbtnImport.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.tsbtnImport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        '
+        'ToolStripSeparator1
+        '
+        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 58)
+        '
+        'tsbtnErori
+        '
+        Me.tsbtnErori.Image = CType(resources.GetObject("tsbtnErori.Image"), System.Drawing.Image)
+        Me.tsbtnErori.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsbtnErori.Margin = New System.Windows.Forms.Padding(5, 2, 5, 0)
+        Me.tsbtnErori.Name = "tsbtnErori"
+        Me.tsbtnErori.Size = New System.Drawing.Size(81, 56)
+        Me.tsbtnErori.Text = "Afiseaza Erori"
+        Me.tsbtnErori.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.tsbtnErori.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        '
+        'tsbtnSave
+        '
+        Me.tsbtnSave.Image = CType(resources.GetObject("tsbtnSave.Image"), System.Drawing.Image)
+        Me.tsbtnSave.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.tsbtnSave.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsbtnSave.Margin = New System.Windows.Forms.Padding(5, 2, 5, 0)
+        Me.tsbtnSave.Name = "tsbtnSave"
+        Me.tsbtnSave.Size = New System.Drawing.Size(55, 56)
+        Me.tsbtnSave.Text = "Salveaza"
+        Me.tsbtnSave.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.tsbtnSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        '
+        'ToolStripSeparator2
+        '
+        Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(6, 58)
+        '
+        'tsbtnGenExp
+        '
+        Me.tsbtnGenExp.Image = CType(resources.GetObject("tsbtnGenExp.Image"), System.Drawing.Image)
+        Me.tsbtnGenExp.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.tsbtnGenExp.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsbtnGenExp.Name = "tsbtnGenExp"
+        Me.tsbtnGenExp.Size = New System.Drawing.Size(101, 55)
+        Me.tsbtnGenExp.Text = "Genereaza Export"
+        Me.tsbtnGenExp.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.tsbtnGenExp.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        '
+        'tsbtnExport
+        '
+        Me.tsbtnExport.Image = CType(resources.GetObject("tsbtnExport.Image"), System.Drawing.Image)
+        Me.tsbtnExport.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.tsbtnExport.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsbtnExport.Name = "tsbtnExport"
+        Me.tsbtnExport.Size = New System.Drawing.Size(44, 55)
+        Me.tsbtnExport.Text = "Export"
+        Me.tsbtnExport.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.tsbtnExport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
         '
         'ts_btnHelp
         '
-        Me.ts_btnHelp.AutoSize = False
-        Me.ts_btnHelp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ts_btnHelp.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
         Me.ts_btnHelp.Image = CType(resources.GetObject("ts_btnHelp.Image"), System.Drawing.Image)
-        Me.ts_btnHelp.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.ts_btnHelp.ImageAlign = System.Drawing.ContentAlignment.TopCenter
         Me.ts_btnHelp.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ts_btnHelp.Margin = New System.Windows.Forms.Padding(0)
+        Me.ts_btnHelp.Margin = New System.Windows.Forms.Padding(5, 2, 5, 0)
         Me.ts_btnHelp.Name = "ts_btnHelp"
-        Me.ts_btnHelp.Size = New System.Drawing.Size(36, 36)
+        Me.ts_btnHelp.Size = New System.Drawing.Size(40, 56)
         Me.ts_btnHelp.Text = "Help"
+        Me.ts_btnHelp.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.ts_btnHelp.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
         '
-        'GroupBox1
+        'tsbtnConfig
         '
-        Me.GroupBox1.Controls.Add(Me.Label1)
-        Me.GroupBox1.Controls.Add(Me.btnImport)
-        Me.GroupBox1.Controls.Add(Me.txtPathImp)
-        Me.GroupBox1.Controls.Add(Me.btnBrowseImp)
-        Me.GroupBox1.Location = New System.Drawing.Point(12, 39)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(388, 54)
-        Me.GroupBox1.TabIndex = 20
-        Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "Import"
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(7, 22)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(32, 13)
-        Me.Label1.TabIndex = 2
-        Me.Label1.Text = "Path"
-        '
-        'btnImport
-        '
-        Me.btnImport.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.btnImport.Font = New System.Drawing.Font("Verdana", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnImport.Location = New System.Drawing.Point(323, 17)
-        Me.btnImport.Name = "btnImport"
-        Me.btnImport.Size = New System.Drawing.Size(58, 23)
-        Me.btnImport.TabIndex = 2
-        Me.btnImport.Text = "Import"
-        Me.ToolTip1.SetToolTip(Me.btnImport, "Importa datele din fisierul selectat")
-        Me.btnImport.UseVisualStyleBackColor = True
-        '
-        'txtPathImp
-        '
-        Me.txtPathImp.Location = New System.Drawing.Point(48, 19)
-        Me.txtPathImp.Name = "txtPathImp"
-        Me.txtPathImp.Size = New System.Drawing.Size(243, 21)
-        Me.txtPathImp.TabIndex = 0
-        '
-        'btnBrowseImp
-        '
-        Me.btnBrowseImp.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.btnBrowseImp.FlatAppearance.BorderSize = 0
-        Me.btnBrowseImp.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnBrowseImp.ImageKey = "Browse 3.ico"
-        Me.btnBrowseImp.ImageList = Me.il20
-        Me.btnBrowseImp.Location = New System.Drawing.Point(297, 17)
-        Me.btnBrowseImp.Name = "btnBrowseImp"
-        Me.btnBrowseImp.Size = New System.Drawing.Size(20, 20)
-        Me.btnBrowseImp.TabIndex = 1
-        Me.btnBrowseImp.UseVisualStyleBackColor = True
-        '
-        'btnCorrect
-        '
-        Me.btnCorrect.AutoSize = True
-        Me.btnCorrect.Location = New System.Drawing.Point(522, 99)
-        Me.btnCorrect.Name = "btnCorrect"
-        Me.btnCorrect.Size = New System.Drawing.Size(133, 23)
-        Me.btnCorrect.TabIndex = 19
-        Me.btnCorrect.Text = "Salveaza modificari"
-        Me.ToolTip1.SetToolTip(Me.btnCorrect, "Salveaza modificarile")
-        Me.btnCorrect.UseVisualStyleBackColor = True
-        '
-        'btnGenExp
-        '
-        Me.btnGenExp.AutoSize = True
-        Me.btnGenExp.Location = New System.Drawing.Point(661, 99)
-        Me.btnGenExp.Name = "btnGenExp"
-        Me.btnGenExp.Size = New System.Drawing.Size(133, 23)
-        Me.btnGenExp.TabIndex = 18
-        Me.btnGenExp.Text = "Genereaza export"
-        Me.ToolTip1.SetToolTip(Me.btnGenExp, "Genereaza datele pentru export")
-        Me.btnGenExp.UseVisualStyleBackColor = True
-        '
-        'btnErrCN8
-        '
-        Me.hpIntrastat.SetHelpString(Me.btnErrCN8, "")
-        Me.btnErrCN8.Location = New System.Drawing.Point(383, 99)
-        Me.btnErrCN8.Name = "btnErrCN8"
-        Me.hpIntrastat.SetShowHelp(Me.btnErrCN8, True)
-        Me.btnErrCN8.Size = New System.Drawing.Size(133, 23)
-        Me.btnErrCN8.TabIndex = 17
-        Me.btnErrCN8.Text = "Afiseaza erori"
-        Me.ToolTip1.SetToolTip(Me.btnErrCN8, "Afiseaza campurile eronate")
-        Me.btnErrCN8.UseVisualStyleBackColor = True
-        '
-        'btnExport
-        '
-        Me.btnExport.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.btnExport.Location = New System.Drawing.Point(324, 17)
-        Me.btnExport.Name = "btnExport"
-        Me.btnExport.Size = New System.Drawing.Size(58, 23)
-        Me.btnExport.TabIndex = 16
-        Me.btnExport.Text = "Export"
-        Me.ToolTip1.SetToolTip(Me.btnExport, "Salveaza datele in fisierul selectat")
-        Me.btnExport.UseVisualStyleBackColor = True
-        '
-        'GroupBox2
-        '
-        Me.GroupBox2.Controls.Add(Me.Label2)
-        Me.GroupBox2.Controls.Add(Me.txtPathExp)
-        Me.GroupBox2.Controls.Add(Me.btnBrowseExp)
-        Me.GroupBox2.Controls.Add(Me.btnExport)
-        Me.GroupBox2.Location = New System.Drawing.Point(406, 39)
-        Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(388, 54)
-        Me.GroupBox2.TabIndex = 21
-        Me.GroupBox2.TabStop = False
-        Me.GroupBox2.Text = "Export"
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(7, 22)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(32, 13)
-        Me.Label2.TabIndex = 2
-        Me.Label2.Text = "Path"
-        '
-        'txtPathExp
-        '
-        Me.txtPathExp.Location = New System.Drawing.Point(48, 19)
-        Me.txtPathExp.Name = "txtPathExp"
-        Me.txtPathExp.Size = New System.Drawing.Size(243, 21)
-        Me.txtPathExp.TabIndex = 0
-        '
-        'btnBrowseExp
-        '
-        Me.btnBrowseExp.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.btnBrowseExp.FlatAppearance.BorderSize = 0
-        Me.btnBrowseExp.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnBrowseExp.ImageKey = "Browse 3.ico"
-        Me.btnBrowseExp.ImageList = Me.il20
-        Me.btnBrowseExp.Location = New System.Drawing.Point(297, 17)
-        Me.btnBrowseExp.Name = "btnBrowseExp"
-        Me.btnBrowseExp.Size = New System.Drawing.Size(20, 20)
-        Me.btnBrowseExp.TabIndex = 1
-        Me.btnBrowseExp.UseVisualStyleBackColor = True
+        Me.tsbtnConfig.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
+        Me.tsbtnConfig.Image = Global.IntrastatPiese.My.Resources.Resources.settings
+        Me.tsbtnConfig.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.tsbtnConfig.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsbtnConfig.Name = "tsbtnConfig"
+        Me.tsbtnConfig.Size = New System.Drawing.Size(40, 55)
+        Me.tsbtnConfig.Text = "Setari"
+        Me.tsbtnConfig.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.tsbtnConfig.TextDirection = System.Windows.Forms.ToolStripTextDirection.Horizontal
+        Me.tsbtnConfig.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
         '
         'btnSelect
         '
@@ -398,8 +320,8 @@ Partial Class frmMain
         'SplitContainer1.Panel2
         '
         Me.SplitContainer1.Panel2.Controls.Add(Me.GroupBox3)
-        Me.SplitContainer1.Size = New System.Drawing.Size(792, 522)
-        Me.SplitContainer1.SplitterDistance = 403
+        Me.SplitContainer1.Size = New System.Drawing.Size(932, 644)
+        Me.SplitContainer1.SplitterDistance = 496
         Me.SplitContainer1.TabIndex = 24
         '
         'dgvErr
@@ -412,7 +334,7 @@ Partial Class frmMain
         Me.dgvErr.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvErr.Location = New System.Drawing.Point(0, 0)
         Me.dgvErr.Name = "dgvErr"
-        Me.dgvErr.Size = New System.Drawing.Size(792, 403)
+        Me.dgvErr.Size = New System.Drawing.Size(932, 496)
         Me.dgvErr.TabIndex = 2
         Me.dgvErr.VirtualMode = True
         '
@@ -453,7 +375,7 @@ Partial Class frmMain
         Me.GroupBox3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox3.Location = New System.Drawing.Point(0, 0)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(792, 115)
+        Me.GroupBox3.Size = New System.Drawing.Size(932, 144)
         Me.GroupBox3.TabIndex = 26
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Filtre"
@@ -479,9 +401,10 @@ Partial Class frmMain
         'lstFilters
         '
         Me.lstFilters.FormattingEnabled = True
+        Me.lstFilters.ItemHeight = 15
         Me.lstFilters.Location = New System.Drawing.Point(263, 9)
         Me.lstFilters.Name = "lstFilters"
-        Me.lstFilters.Size = New System.Drawing.Size(171, 95)
+        Me.lstFilters.Size = New System.Drawing.Size(171, 94)
         Me.lstFilters.TabIndex = 31
         '
         'Label5
@@ -489,7 +412,7 @@ Partial Class frmMain
         Me.Label5.AutoSize = True
         Me.Label5.Location = New System.Drawing.Point(13, 77)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(50, 13)
+        Me.Label5.Size = New System.Drawing.Size(45, 15)
         Me.Label5.TabIndex = 30
         Me.Label5.Text = "Valoare"
         '
@@ -497,7 +420,7 @@ Partial Class frmMain
         '
         Me.txtVal.Location = New System.Drawing.Point(70, 74)
         Me.txtVal.Name = "txtVal"
-        Me.txtVal.Size = New System.Drawing.Size(121, 21)
+        Me.txtVal.Size = New System.Drawing.Size(121, 23)
         Me.txtVal.TabIndex = 29
         '
         'Label4
@@ -505,7 +428,7 @@ Partial Class frmMain
         Me.Label4.AutoSize = True
         Me.Label4.Location = New System.Drawing.Point(6, 50)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(58, 13)
+        Me.Label4.Size = New System.Drawing.Size(54, 15)
         Me.Label4.TabIndex = 28
         Me.Label4.Text = "Operator"
         '
@@ -514,7 +437,7 @@ Partial Class frmMain
         Me.cmbOp.FormattingEnabled = True
         Me.cmbOp.Location = New System.Drawing.Point(70, 47)
         Me.cmbOp.Name = "cmbOp"
-        Me.cmbOp.Size = New System.Drawing.Size(121, 21)
+        Me.cmbOp.Size = New System.Drawing.Size(121, 23)
         Me.cmbOp.TabIndex = 27
         '
         'Label3
@@ -522,7 +445,7 @@ Partial Class frmMain
         Me.Label3.AutoSize = True
         Me.Label3.Location = New System.Drawing.Point(23, 23)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(41, 13)
+        Me.Label3.Size = New System.Drawing.Size(39, 15)
         Me.Label3.TabIndex = 26
         Me.Label3.Text = "Camp"
         '
@@ -531,7 +454,7 @@ Partial Class frmMain
         Me.cmbFields.FormattingEnabled = True
         Me.cmbFields.Location = New System.Drawing.Point(70, 20)
         Me.cmbFields.Name = "cmbFields"
-        Me.cmbFields.Size = New System.Drawing.Size(121, 21)
+        Me.cmbFields.Size = New System.Drawing.Size(121, 23)
         Me.cmbFields.TabIndex = 25
         '
         'TabControl1
@@ -542,21 +465,22 @@ Partial Class frmMain
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage2)
         Me.TabControl1.Controls.Add(Me.TabPage3)
+        Me.TabControl1.HotTrack = True
         Me.TabControl1.ImageList = Me.il32
-        Me.TabControl1.Location = New System.Drawing.Point(0, 128)
+        Me.TabControl1.Location = New System.Drawing.Point(0, 79)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(806, 571)
+        Me.TabControl1.Size = New System.Drawing.Size(946, 693)
         Me.TabControl1.TabIndex = 25
         '
         'TabPage1
         '
         Me.TabPage1.Controls.Add(Me.dgvData)
-        Me.TabPage1.ImageKey = "Table 1.ico"
+        Me.TabPage1.ImageKey = "table-grid.png"
         Me.TabPage1.Location = New System.Drawing.Point(4, 39)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(798, 528)
+        Me.TabPage1.Size = New System.Drawing.Size(938, 650)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Data"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -571,17 +495,17 @@ Partial Class frmMain
         Me.dgvData.Location = New System.Drawing.Point(3, 3)
         Me.dgvData.Name = "dgvData"
         Me.dgvData.ReadOnly = True
-        Me.dgvData.Size = New System.Drawing.Size(792, 522)
+        Me.dgvData.Size = New System.Drawing.Size(932, 644)
         Me.dgvData.TabIndex = 0
         '
         'TabPage2
         '
         Me.TabPage2.Controls.Add(Me.SplitContainer1)
-        Me.TabPage2.ImageKey = "Stop 2.ico"
+        Me.TabPage2.ImageKey = "bug.png"
         Me.TabPage2.Location = New System.Drawing.Point(4, 39)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(798, 528)
+        Me.TabPage2.Size = New System.Drawing.Size(938, 650)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Erori CN8"
         Me.TabPage2.UseVisualStyleBackColor = True
@@ -589,11 +513,11 @@ Partial Class frmMain
         'TabPage3
         '
         Me.TabPage3.Controls.Add(Me.dgvExport)
-        Me.TabPage3.ImageKey = "Table 1.ico"
+        Me.TabPage3.ImageKey = "table-grid.png"
         Me.TabPage3.Location = New System.Drawing.Point(4, 39)
         Me.TabPage3.Name = "TabPage3"
         Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage3.Size = New System.Drawing.Size(798, 528)
+        Me.TabPage3.Size = New System.Drawing.Size(938, 650)
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "Export"
         Me.TabPage3.UseVisualStyleBackColor = True
@@ -608,7 +532,7 @@ Partial Class frmMain
         Me.dgvExport.Location = New System.Drawing.Point(3, 3)
         Me.dgvExport.Name = "dgvExport"
         Me.dgvExport.ReadOnly = True
-        Me.dgvExport.Size = New System.Drawing.Size(792, 522)
+        Me.dgvExport.Size = New System.Drawing.Size(932, 644)
         Me.dgvExport.TabIndex = 2
         '
         'hpIntrastat
@@ -617,18 +541,13 @@ Partial Class frmMain
         '
         'frmMain
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 13.0!)
-        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(806, 721)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(96.0!, 96.0!)
+        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi
+        Me.ClientSize = New System.Drawing.Size(946, 794)
         Me.Controls.Add(Me.TabControl1)
         Me.Controls.Add(Me.tsMain)
         Me.Controls.Add(Me.ssIntrastat)
-        Me.Controls.Add(Me.GroupBox1)
-        Me.Controls.Add(Me.btnCorrect)
-        Me.Controls.Add(Me.GroupBox2)
-        Me.Controls.Add(Me.btnGenExp)
-        Me.Controls.Add(Me.btnErrCN8)
-        Me.Font = New System.Drawing.Font("Verdana", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
         Me.Name = "frmMain"
         Me.hpIntrastat.SetShowHelp(Me, True)
         Me.Text = "Intrastat Piese"
@@ -636,10 +555,6 @@ Partial Class frmMain
         Me.ssIntrastat.PerformLayout()
         Me.tsMain.ResumeLayout(False)
         Me.tsMain.PerformLayout()
-        Me.GroupBox1.ResumeLayout(False)
-        Me.GroupBox1.PerformLayout()
-        Me.GroupBox2.ResumeLayout(False)
-        Me.GroupBox2.PerformLayout()
         Me.SplitContainer1.Panel1.ResumeLayout(False)
         Me.SplitContainer1.Panel2.ResumeLayout(False)
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -669,26 +584,7 @@ Partial Class frmMain
     Friend WithEvents dlgExport As System.Windows.Forms.SaveFileDialog
     Friend WithEvents il20 As System.Windows.Forms.ImageList
     Friend WithEvents il32 As System.Windows.Forms.ImageList
-    Friend WithEvents BottomToolStripPanel As System.Windows.Forms.ToolStripPanel
-    Friend WithEvents TopToolStripPanel As System.Windows.Forms.ToolStripPanel
-    Friend WithEvents RightToolStripPanel As System.Windows.Forms.ToolStripPanel
-    Friend WithEvents LeftToolStripPanel As System.Windows.Forms.ToolStripPanel
-    Friend WithEvents ContentPanel As System.Windows.Forms.ToolStripContentPanel
     Friend WithEvents tsMain As System.Windows.Forms.ToolStrip
-    Friend WithEvents ts_btnConfig As System.Windows.Forms.ToolStripButton
-    Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
-    Friend WithEvents Label1 As System.Windows.Forms.Label
-    Friend WithEvents btnImport As System.Windows.Forms.Button
-    Friend WithEvents txtPathImp As System.Windows.Forms.TextBox
-    Friend WithEvents btnBrowseImp As System.Windows.Forms.Button
-    Friend WithEvents btnCorrect As System.Windows.Forms.Button
-    Friend WithEvents btnGenExp As System.Windows.Forms.Button
-    Friend WithEvents btnErrCN8 As System.Windows.Forms.Button
-    Friend WithEvents btnExport As System.Windows.Forms.Button
-    Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
-    Friend WithEvents Label2 As System.Windows.Forms.Label
-    Friend WithEvents txtPathExp As System.Windows.Forms.TextBox
-    Friend WithEvents btnBrowseExp As System.Windows.Forms.Button
     Friend WithEvents bsErr As System.Windows.Forms.BindingSource
     Friend WithEvents btnSelect As System.Windows.Forms.Button
     Friend WithEvents SplitContainer1 As System.Windows.Forms.SplitContainer
@@ -715,4 +611,17 @@ Partial Class frmMain
     Friend WithEvents ts_btnHelp As System.Windows.Forms.ToolStripButton
     Friend WithEvents hpIntrastat As System.Windows.Forms.HelpProvider
     Friend WithEvents ToolTip1 As System.Windows.Forms.ToolTip
+    Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
+    Friend WithEvents tsbtnErori As ToolStripButton
+    Friend WithEvents tsbtnSave As ToolStripButton
+    Friend WithEvents tsbtnExport As ToolStripButton
+    Friend WithEvents BottomToolStripPanel As ToolStripPanel
+    Friend WithEvents TopToolStripPanel As ToolStripPanel
+    Friend WithEvents RightToolStripPanel As ToolStripPanel
+    Friend WithEvents LeftToolStripPanel As ToolStripPanel
+    Friend WithEvents ContentPanel As ToolStripContentPanel
+    Friend WithEvents tsbtnImport As ToolStripButton
+    Friend WithEvents tsbtnGenExp As ToolStripButton
+    Friend WithEvents ToolStripSeparator2 As ToolStripSeparator
+    Friend WithEvents tsbtnConfig As ToolStripButton
 End Class

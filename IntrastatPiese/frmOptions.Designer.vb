@@ -22,20 +22,19 @@ Partial Class frmOptions
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmOptions))
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox
-        Me.Button1 = New System.Windows.Forms.Button
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.il20 = New System.Windows.Forms.ImageList(Me.components)
-        Me.Label1 = New System.Windows.Forms.Label
-        Me.btnSave = New System.Windows.Forms.Button
-        Me.btnCancel = New System.Windows.Forms.Button
-        Me.dlgMDB = New System.Windows.Forms.OpenFileDialog
-        Me.GroupBox2 = New System.Windows.Forms.GroupBox
-        Me.Label2 = New System.Windows.Forms.Label
-        Me.txtDeci = New System.Windows.Forms.TextBox
-        Me.chkExpDel = New System.Windows.Forms.CheckBox
-        Me.txtDBPath = New System.Windows.Forms.TextBox
+        Me.txtDBPath = New System.Windows.Forms.TextBox()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.btnSave = New System.Windows.Forms.Button()
+        Me.btnCancel = New System.Windows.Forms.Button()
+        Me.dlgMDB = New System.Windows.Forms.OpenFileDialog()
+        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.txtDeci = New System.Windows.Forms.TextBox()
+        Me.Label2 = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.SuspendLayout()
@@ -47,7 +46,7 @@ Partial Class frmOptions
         Me.GroupBox1.Controls.Add(Me.Label1)
         Me.GroupBox1.Location = New System.Drawing.Point(12, 12)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(362, 43)
+        Me.GroupBox1.Size = New System.Drawing.Size(392, 43)
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "MDB"
@@ -58,7 +57,7 @@ Partial Class frmOptions
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button1.ImageKey = "Browse 3.ico"
         Me.Button1.ImageList = Me.il20
-        Me.Button1.Location = New System.Drawing.Point(334, 12)
+        Me.Button1.Location = New System.Drawing.Point(359, 12)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(22, 22)
         Me.Button1.TabIndex = 1
@@ -71,14 +70,23 @@ Partial Class frmOptions
         Me.il20.Images.SetKeyName(0, "Browse 3.ico")
         Me.il20.Images.SetKeyName(1, "Table 1.ico")
         '
+        'txtDBPath
+        '
+        Me.txtDBPath.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.IntrastatPiese.My.MySettings.Default, "asNomPath", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.txtDBPath.Location = New System.Drawing.Point(124, 14)
+        Me.txtDBPath.Name = "txtDBPath"
+        Me.txtDBPath.Size = New System.Drawing.Size(229, 21)
+        Me.txtDBPath.TabIndex = 1
+        Me.txtDBPath.Text = Global.IntrastatPiese.My.MySettings.Default.asNomPath
+        '
         'Label1
         '
         Me.Label1.AutoSize = True
         Me.Label1.Location = New System.Drawing.Point(3, 17)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(90, 13)
+        Me.Label1.Size = New System.Drawing.Size(115, 13)
         Me.Label1.TabIndex = 0
-        Me.Label1.Text = "Database path"
+        Me.Label1.Text = "Nomenclature path"
         '
         'btnSave
         '
@@ -100,65 +108,43 @@ Partial Class frmOptions
         '
         'dlgMDB
         '
-        Me.dlgMDB.Filter = "MDB Files(.mdb)|*.mdb|All files|*.*"
+        Me.dlgMDB.Filter = "CSV Files (.csv)|*.csv|All files|*.*"
         '
         'GroupBox2
         '
         Me.GroupBox2.Controls.Add(Me.txtDeci)
         Me.GroupBox2.Controls.Add(Me.Label2)
-        Me.GroupBox2.Controls.Add(Me.chkExpDel)
         Me.GroupBox2.Location = New System.Drawing.Point(12, 61)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(362, 73)
+        Me.GroupBox2.Size = New System.Drawing.Size(392, 49)
         Me.GroupBox2.TabIndex = 4
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Export"
         '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(3, 45)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(334, 13)
-        Me.Label2.TabIndex = 4
-        Me.Label2.Text = "Numarul de zecimale pentru valorile numerice neintregi -"
-        Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
         'txtDeci
         '
         Me.txtDeci.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.IntrastatPiese.My.MySettings.Default, "asDeci", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.txtDeci.Location = New System.Drawing.Point(334, 42)
+        Me.txtDeci.Location = New System.Drawing.Point(334, 14)
         Me.txtDeci.Name = "txtDeci"
         Me.txtDeci.Size = New System.Drawing.Size(22, 21)
         Me.txtDeci.TabIndex = 5
         Me.txtDeci.Text = Global.IntrastatPiese.My.MySettings.Default.asDeci
         '
-        'chkExpDel
+        'Label2
         '
-        Me.chkExpDel.AutoSize = True
-        Me.chkExpDel.Checked = Global.IntrastatPiese.My.MySettings.Default.asExpDel
-        Me.chkExpDel.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Global.IntrastatPiese.My.MySettings.Default, "asExpDel", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.chkExpDel.Location = New System.Drawing.Point(6, 20)
-        Me.chkExpDel.Name = "chkExpDel"
-        Me.chkExpDel.Size = New System.Drawing.Size(243, 17)
-        Me.chkExpDel.TabIndex = 3
-        Me.chkExpDel.Text = "Goleste tablela principala dupa export"
-        Me.chkExpDel.UseVisualStyleBackColor = True
-        '
-        'txtDBPath
-        '
-        Me.txtDBPath.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.IntrastatPiese.My.MySettings.Default, "asDBPath", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.txtDBPath.Location = New System.Drawing.Point(99, 14)
-        Me.txtDBPath.Name = "txtDBPath"
-        Me.txtDBPath.Size = New System.Drawing.Size(229, 21)
-        Me.txtDBPath.TabIndex = 1
-        Me.txtDBPath.Text = Global.IntrastatPiese.My.MySettings.Default.asDBPath
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(6, 17)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(325, 13)
+        Me.Label2.TabIndex = 4
+        Me.Label2.Text = "Numarul de zecimale pentru valorile numerice neintregi"
+        Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'frmOptions
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(386, 198)
+        Me.ClientSize = New System.Drawing.Size(416, 198)
         Me.ControlBox = False
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.btnCancel)
@@ -182,7 +168,6 @@ Partial Class frmOptions
     Friend WithEvents btnSave As System.Windows.Forms.Button
     Friend WithEvents btnCancel As System.Windows.Forms.Button
     Friend WithEvents dlgMDB As System.Windows.Forms.OpenFileDialog
-    Friend WithEvents chkExpDel As System.Windows.Forms.CheckBox
     Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents txtDeci As System.Windows.Forms.TextBox

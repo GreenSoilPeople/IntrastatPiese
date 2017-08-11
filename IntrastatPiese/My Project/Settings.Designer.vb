@@ -101,6 +101,18 @@ Namespace My
                 Me("asDeci") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property asNomPath() As String
+            Get
+                Return CType(Me("asNomPath"),String)
+            End Get
+            Set
+                Me("asNomPath") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

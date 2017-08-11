@@ -5,9 +5,9 @@ Public Class ImportFile
     Public Supplier As Integer
 
     '<FieldConverter(ConverterKind.Date, "DD.MM.YYYY")>
-    <FieldConverter(GetType(StringToDateConverter))>
+    <FieldConverter(GetType(TrimConvertor))>
     <FieldQuoted>
-    Public DateIn As Date
+    Public DateIn As String
 
     <FieldQuoted>
     Public Invoice As String
@@ -40,6 +40,7 @@ Public Class ImportFile
     Public TotalStatisticalValue As Double
 
     <FieldConverter(ConverterKind.Double, ",")>
+    <FieldNullValue(GetType(Double), "0")>
     Public Weight As Double 'Integer
 
     Public Quantity As Integer

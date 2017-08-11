@@ -4,51 +4,48 @@ Imports FileHelpers
 
 Public Class frmMain
 
-
+    Private dfErr As DataFilter
     Private intra As IntraFile
 
-    Private Sub frmMain_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+    Private Sub frmMain_Load() Handles MyBase.Load
         Try
 
             Dim ci As New Globalization.CultureInfo("ro-RO")
             'ci.DateTimeFormat.ShortDatePattern = "yyyymmdd"
             Threading.Thread.CurrentThread.CurrentCulture = ci
 
-            ts_btnConfig.Image = il32.Images.Item("Advanced Options.ico")
-            ts_btnHelp.Image = il32.Images.Item("help.ico")
+            'ts_btnConfig.Image = il32.Images.Item("Advanced Options.ico")
+            'ts_btnHelp.Image = il32.Images.Item("help.ico")
             hpIntrastat.HelpNamespace = Application.StartupPath & "\help\Intrastat Piese.chm"
 
-            If My.Settings.asDBPath = Nothing Or My.Settings.asDBPath = "" Then
-                frmOptions.Show()
-                My.Settings.asRestart = True
-                My.Settings.Save()
-                Me.Dispose(True)
-            End If
+
         Catch ex As Exception
             MsgBox(ex.Source & ":" & ex.Message, MsgBoxStyle.Exclamation)
         End Try
     End Sub
 
-    Private Sub bwImport_DoWork(ByVal sender As Object, ByVal e As System.ComponentModel.DoWorkEventArgs) Handles bwImport.DoWork
+    Private Sub bwImport_DoWork(ByVal sender As Object, ByVal e As DoWorkEventArgs) Handles bwImport.DoWork
         Try
 
             intra = New IntraFile
 
-            intra.ImportFile(txtPathImp.Text)
+            intra.ImportFile(e.Argument)
 
+            e.Result = intra
         Catch ex As Exception
             MsgBox(ex.Source & ":" & ex.Message, MsgBoxStyle.Exclamation)
         End Try
     End Sub
 
-    Private Sub bwImport_RunWorkerCompleted(ByVal sender As Object, ByVal e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles bwImport.RunWorkerCompleted
+    Private Sub bwImport_RunWorkerCompleted(ByVal sender As Object, ByVal e As RunWorkerCompletedEventArgs) Handles bwImport.RunWorkerCompleted
         Try
-            btnImport.Enabled = True
-            btnExport.Enabled = True
-            btnErrCN8.Enabled = True
-            btnCorrect.Enabled = True
-            btnGenExp.Enabled = True
+            'btnImport.Enabled = True
+            'btnExport.Enabled = True
+            'btnErrCN8.Enabled = True
+            'btnCorrect.Enabled = True
+            'btnGenExp.Enabled = True
 
+            intra = e.Result
             dgvData.DataSource = intra.Data
             pbImport.Visible = False
             dgvData.Columns.Item("id").Visible = False
@@ -60,7 +57,7 @@ Public Class frmMain
         End Try
     End Sub
 
-    Private Sub bwExport_DoWork(ByVal sender As Object, ByVal e As System.ComponentModel.DoWorkEventArgs) Handles bwExport.DoWork
+    Private Sub bwExport_DoWork(ByVal sender As Object, ByVal e As DoWorkEventArgs) Handles bwExport.DoWork
         Try
 
             intra.ExportFile(e.Argument)
@@ -71,112 +68,116 @@ Public Class frmMain
         End Try
     End Sub
 
-    Private Sub btnBrowse_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnBrowseImp.Click
-        If dlgImport IsNot Nothing Then
-            If dlgImport.ShowDialog = DialogResult.Cancel Then Exit Sub
-            txtPathImp.Text = dlgImport.FileName
-        End If
-    End Sub
+    'Private Sub btnBrowse_Click() Handles btnBrowseImp.Click
+    '    If dlgImport IsNot Nothing Then
+    '        If dlgImport.ShowDialog = DialogResult.Cancel Then Exit Sub
+    '        txtPathImp.Text = dlgImport.FileName
+    '    End If
+    'End Sub
 
-    Private Sub btnImport_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnImport.Click
+    'Private Sub btnImport_Click(sender As Object, e As EventArgs)
 
-        Try
-            If txtPathImp.Text = Nothing Then
-                MsgBox("Trebuie sa selectati calea catre fisierul de import!", MsgBoxStyle.Information)
-            Else
+    '    Try
+    '        If txtPathImp.Text = Nothing Then
+    '            MsgBox("Trebuie sa selectati calea catre fisierul de import!", MsgBoxStyle.Information)
+    '        Else
 
-                ss_lblImport.Text = "Importing data..."
-                pbImport.Visible = True
-
-
-                btnImport.Enabled = False
-                btnExport.Enabled = False
-                btnErrCN8.Enabled = False
-                btnCorrect.Enabled = False
+    '            ss_lblImport.Text = "Importing data..."
+    '            pbImport.Visible = True
 
 
-                bwImport.RunWorkerAsync()
-            End If
-        Catch ex As Exception
+    '            btnImport.Enabled = False
+    '            btnExport.Enabled = False
+    '            btnErrCN8.Enabled = False
+    '            btnCorrect.Enabled = False
 
-        End Try
+    '            bwImport.RunWorkerAsync()
+    '        End If
+    '    Catch ex As Exception
 
-    End Sub
+    '    End Try
 
-    Private Sub btnExport_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnExport.Click
+    'End Sub
 
-        bwExport.RunWorkerAsync(txtPathExp.Text)
+    'Private Sub btnExport_Click() Handles btnExport.Click
 
-    End Sub
+    '    bwExport.RunWorkerAsync(txtPathExp.Text)
 
-    Private Sub btnErrCN8_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnErrCN8.Click
-        Try
+    'End Sub
 
-            'TODO: use App Settings
-            bsErr.DataSource = intra.GenerateErrors("D:\TEST\nomenclatoare.csv")
+    'Private Sub btnErrCN8_Click() Handles btnErrCN8.Click
+    '    Try
 
-            bsErr.Filter = ""
+    '        'TODO: use App Settings
+
+    '        Dim nom As String = My.Settings.asNomPath
+
+    '        bsErr.DataSource = intra.GenerateErrors(nom)
+
+    '        bsErr.Filter = ""
 
 
-            For Each col As DataColumn In intra.ErrorData.Columns
-                cmbFields.Items.Add(col.ColumnName)
-            Next
+    '        For Each col As DataColumn In intra.ErrorData.Columns
+    '            cmbFields.Items.Add(col.ColumnName)
+    '        Next
 
-            dgvErr.DataSource = bsErr
-            dgvErr.Columns.Item(0).Visible = False
+    '        dgvErr.DataSource = bsErr
+    '        'dgvErr.Columns.Item(0).Visible = False
 
-            TabControl1.SelectedTab = TabControl1.Controls.Item(1)
-        Catch ex As Exception
-            MsgBox(ex.Source & ":" & ex.Message, MsgBoxStyle.Exclamation)
-        End Try
-    End Sub
+    '        dfErr = New DataFilter(intra.ErrorData)
 
-    Private Sub ts_btnConfig_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ts_btnConfig.Click
-        frmOptions.Show()
-    End Sub
+    '        'dgvErr.DataSource = dfErr
 
-    Private Sub btnGenExp_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGenExp.Click
-        Try
-            If bwImport.IsBusy Then
-                MsgBox("Trebuie sa asteptati pana cand aplicatia finalizeaza procesul" & vbNewLine & "de import al datelor pentru a putea folosi aceasta optiune!", MsgBoxStyle.Exclamation)
-                Exit Sub
-            End If
-            dgvExport.DataSource = intra.GenerateExport
-            TabControl1.SelectedTab = TabControl1.Controls.Item(2)
+    '        TabControl1.SelectedTab = TabControl1.Controls.Item(1)
+    '    Catch ex As Exception
+    '        MsgBox(ex.Source & ":" & ex.Message, MsgBoxStyle.Exclamation)
+    '    End Try
+    'End Sub
 
-        Catch ex As Exception
-        MsgBox(ex.Source & ":" & ex.Message, MsgBoxStyle.Exclamation)
-        End Try
-    End Sub
 
-    Private Sub btnBrowseExp_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnBrowseExp.Click
-        If dlgExport IsNot Nothing Then
-            If dlgExport.ShowDialog = DialogResult.Cancel Then Exit Sub
-            txtPathExp.Text = dlgExport.FileName
-        End If
-    End Sub
 
-    Private Sub btnCorrect_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCorrect.Click
-        Try
+    'Private Sub btnGenExp_Click() Handles btnGenExp.Click
+    '    Try
+    '        If bwImport.IsBusy Then
+    '            MsgBox("Trebuie sa asteptati pana cand aplicatia finalizeaza procesul" & vbNewLine & "de import al datelor pentru a putea folosi aceasta optiune!", MsgBoxStyle.Exclamation)
+    '            Exit Sub
+    '        End If
+    '        dgvExport.DataSource = intra.GenerateExport
+    '        TabControl1.SelectedTab = TabControl1.Controls.Item(2)
 
-            dgvErr.EndEdit()
+    '    Catch ex As Exception
+    '        MsgBox(ex.Source & ":" & ex.Message, MsgBoxStyle.Exclamation)
+    '    End Try
+    'End Sub
 
-            intra.SaveChanges()
+    'Private Sub btnBrowseExp_Click() Handles btnBrowseExp.Click
+    '    If dlgExport IsNot Nothing Then
+    '        If dlgExport.ShowDialog = DialogResult.Cancel Then Exit Sub
+    '        txtPathExp.Text = dlgExport.FileName
+    '    End If
+    'End Sub
 
-            MsgBox("Modificarile au fost salvate!")
-        Catch ex As Exception
-            MsgBox(ex.Source & ":" & ex.Message, MsgBoxStyle.Exclamation)
-            Exit Try
-        End Try
-    End Sub
+    'Private Sub btnCorrect_Click() Handles btnCorrect.Click
+    '    Try
+
+    '        dgvErr.EndEdit()
+
+    '        intra.SaveChanges()
+
+    '        MsgBox("Modificarile au fost salvate!")
+    '    Catch ex As Exception
+    '        MsgBox(ex.Source & ":" & ex.Message, MsgBoxStyle.Exclamation)
+    '        Exit Try
+    '    End Try
+    'End Sub
 
     Private Sub bwExport_RunWorkerCompleted(ByVal sender As Object, ByVal e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles bwExport.RunWorkerCompleted
         Try
-            btnImport.Enabled = True
-            btnExport.Enabled = True
-            btnErrCN8.Enabled = True
-            btnCorrect.Enabled = True
-            btnGenExp.Enabled = True
+            'btnImport.Enabled = True
+            'btnExport.Enabled = True
+            'btnErrCN8.Enabled = True
+            'btnCorrect.Enabled = True
+            'btnGenExp.Enabled = True
 
             MsgBox("Datele au fost exportate cu succes")
 
@@ -185,8 +186,11 @@ Public Class frmMain
         End Try
     End Sub
 
-    Private Sub btnAddFilter_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAddFilter.Click
+    Private Sub btnAddFilter_Click() Handles btnAddFilter.Click
         Try
+
+            'dfErr.Filters.AddFilter(cmbFields.Text, cmbOp.Text, txtVal.Text)
+
             Dim flt As String
             flt = "[" & cmbFields.Text & "] " & cmbOp.Text & " "
 
@@ -203,13 +207,13 @@ Public Class frmMain
         End Try
     End Sub
 
-    Private Sub btnRemoveFilter_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRemoveFilter.Click
+    Private Sub btnRemoveFilter_Click() Handles btnRemoveFilter.Click
         For Each itm As Integer In lstFilters.SelectedIndices
             lstFilters.Items.RemoveAt(itm)
         Next
     End Sub
 
-    Private Sub btnSelect_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSelect.Click
+    Private Sub btnSelect_Click() Handles btnSelect.Click
         Try
             If lstFilters.Items.Count = 0 Then
                 bsErr.RemoveFilter()
@@ -229,7 +233,7 @@ Public Class frmMain
         End Try
     End Sub
 
-    Private Sub PasteToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PasteToolStripMenuItem.Click
+    Private Sub PasteToolStripMenuItem_Click() Handles PasteToolStripMenuItem.Click
         Dim sel_idx As New List(Of Integer)
         Dim col As String = dgvErr.Columns.Item(dgvErr.SelectedCells.Item(0).ColumnIndex).Name
         For Each cel As DataGridViewCell In dgvErr.SelectedCells
@@ -241,7 +245,7 @@ Public Class frmMain
 
     End Sub
 
-    Private Sub DeleteToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles DeleteToolStripMenuItem.Click
+    Private Sub DeleteToolStripMenuItem_Click() Handles DeleteToolStripMenuItem.Click
         Dim sel_idx As New List(Of Integer)
         Dim col As String = dgvErr.Columns.Item(dgvErr.SelectedCells.Item(0).ColumnIndex).Name
         For Each cel As DataGridViewCell In dgvErr.SelectedCells
@@ -252,8 +256,7 @@ Public Class frmMain
         Next
     End Sub
 
-    Private Sub cmbFields_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmbFields.TextChanged
-        'MsgBox(ds_errcn8.Tables(0).Columns.Item(cmbFields.Text).DataType.Name)
+    Private Sub cmbFields_TextChanged() Handles cmbFields.TextChanged
         cmbOp.Items.Clear()
         cmbOp.Text = Nothing
         Select Case intra.ErrorData.Columns.Item(cmbFields.Text).DataType.Name
@@ -264,32 +267,129 @@ Public Class frmMain
         End Select
     End Sub
 
-    Private Sub ts_btnHelp_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ts_btnHelp.Click
+    Private Sub ts_btnHelp_Click() Handles ts_btnHelp.Click
         Help.ShowHelp(Me, hpIntrastat.HelpNamespace)
     End Sub
 
-    Private Sub frmMain_ResizeBegin(sender As Object, e As EventArgs) Handles Me.ResizeBegin
+    Private Sub frmMain_ResizeBegin() Handles Me.ResizeBegin
         SuspendLayout()
     End Sub
 
-    Private Sub frmMain_ResizeEnd(sender As Object, e As EventArgs) Handles Me.ResizeEnd
+    Private Sub frmMain_ResizeEnd() Handles Me.ResizeEnd
         ResumeLayout(True)
     End Sub
 
-    Private Sub dgvErr_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvErr.CellClick
+    Private Sub dgvErr_CellClick() Handles dgvErr.CellClick
         dgvErr.BeginEdit(False)
     End Sub
 
-    Private Sub dgvData_DataBindingComplete(sender As Object, e As DataGridViewBindingCompleteEventArgs) Handles dgvData.DataBindingComplete
+    Private Sub dgvData_DataBindingComplete() Handles dgvData.DataBindingComplete
         dgvData.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells
     End Sub
 
-    Private Sub dgvErr_DataBindingComplete(sender As Object, e As DataGridViewBindingCompleteEventArgs) Handles dgvErr.DataBindingComplete
+    Private Sub dgvErr_DataBindingComplete() Handles dgvErr.DataBindingComplete
         dgvErr.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells
     End Sub
 
+    Private Sub tsbtnImport_Click(sender As Object, e As EventArgs) Handles tsbtnImport.Click
+
+        Try
+
+            Dim dlg As New OpenFileDialog With {
+                .Filter = "TXT file|*.txt|CSV File|*.csv|All Files|*.*"
+            }
+
+
+            If dlg.ShowDialog = DialogResult.Cancel Then Exit Sub
 
 
 
+            ss_lblImport.Text = "Importing data..."
+            pbImport.Visible = True
 
+
+            'btnImport.Enabled = False
+            'btnExport.Enabled = False
+            'btnErrCN8.Enabled = False
+            'btnCorrect.Enabled = False
+
+            bwImport.RunWorkerAsync(dlg.FileName)
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub tsbtnErori_Click(sender As Object, e As EventArgs) Handles tsbtnErori.Click
+        Try
+
+            'TODO: use App Settings
+
+            Dim nom As String = My.Settings.asNomPath
+
+            bsErr.DataSource = intra.GenerateErrors(nom)
+
+            bsErr.Filter = ""
+
+
+            For Each col As DataColumn In intra.ErrorData.Columns
+                cmbFields.Items.Add(col.ColumnName)
+            Next
+
+            dgvErr.DataSource = bsErr
+            'dgvErr.Columns.Item(0).Visible = False
+
+            dfErr = New DataFilter(intra.ErrorData)
+
+            'dgvErr.DataSource = dfErr
+
+            TabControl1.SelectedTab = TabControl1.Controls.Item(1)
+        Catch ex As Exception
+            MsgBox(ex.Source & ":" & ex.Message, MsgBoxStyle.Exclamation)
+        End Try
+    End Sub
+
+    Private Sub tsbtnSave_Click(sender As Object, e As EventArgs) Handles tsbtnSave.Click
+        Try
+
+            dgvErr.EndEdit()
+
+            intra.SaveChanges()
+
+            MsgBox("Modificarile au fost salvate!")
+        Catch ex As Exception
+            MsgBox(ex.Source & ":" & ex.Message, MsgBoxStyle.Exclamation)
+            Exit Try
+        End Try
+    End Sub
+
+    Private Sub tsbtnExport_Click(sender As Object, e As EventArgs) Handles tsbtnExport.Click
+
+        Dim dlg As New SaveFileDialog With {
+            .Filter = "Text files(.txt)|*.txt|CSV files(.csv)|*.csv|All files|*.*"
+        }
+
+        If dlg.ShowDialog = DialogResult.Cancel Then Exit Sub
+
+        bwExport.RunWorkerAsync(dlg.FileName)
+
+    End Sub
+
+    Private Sub tsbtnGenExp_Click(sender As Object, e As EventArgs) Handles tsbtnGenExp.Click
+        Try
+            If bwImport.IsBusy Then
+                MsgBox("Trebuie sa asteptati pana cand aplicatia finalizeaza procesul" & vbNewLine & "de import al datelor pentru a putea folosi aceasta optiune!", MsgBoxStyle.Exclamation)
+                Exit Sub
+            End If
+            dgvExport.DataSource = intra.GenerateExport
+            TabControl1.SelectedTab = TabControl1.Controls.Item(2)
+
+        Catch ex As Exception
+            MsgBox(ex.Source & ":" & ex.Message, MsgBoxStyle.Exclamation)
+        End Try
+    End Sub
+
+    Private Sub tsbtnConfig_Click(sender As Object, e As EventArgs) Handles tsbtnConfig.Click
+        frmOptions.Show()
+    End Sub
 End Class
